@@ -25,13 +25,13 @@ export default class CurrentSession extends React.Component {
               isSession: false
             })
             this.props.toggleInterval(this.state.isSession)
-            //Тут музыка
+            document.getElementById("audio").play()
           } else {
             this.setState({
               isSession: true
             })
             this.props.toggleInterval(this.state.isSession)
-            //И тут музыка
+            document.getElementById("audio").play()
           }
         } else {
           this.props.updateTimer()
@@ -69,7 +69,6 @@ export default class CurrentSession extends React.Component {
     })
   }
 
-
   render() {
     return (
       <div>
@@ -78,6 +77,7 @@ export default class CurrentSession extends React.Component {
         <button id="start" onClick={this.start} disabled={this.props.isPlay === true ? "disabled" : ""}>start</button>
         <button id="stop" onClick={this.stop}>stop</button>
         <button id="reset" onClick={this.resetTimer}>reset</button>
+        <audio id="audio" crossOrigin="anonymous" preload="auto" src="media/alarm.mp3"></audio>
       </div>
     )
   }
