@@ -1,5 +1,59 @@
+body {
+  background: #181818;
+}
+
 .App {
   text-align: center;
+  font-family: 'Baloo Da 2', cursive;
+  color: white;
+}
+
+.chooseTime {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+}
+
+div {
+  font-size: 25px;
+}
+
+.break {
+  width: 150px;
+}
+
+.currentSession {
+  width: 300px;
+  margin: auto;
+
+}
+
+
+#start, #stop, #reset {
+  width: 90px;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  margin: 10px 0;
+  justify-content: space-between;
+}
+
+#break-length {
+  margin: 0 10px;
+}
+
+button {
+  cursor: pointer;
+  border: 2px solid #9E32F6;
+  font-size: 25px;
+  background: #181818;
+  border-radius: 50px;
+  height: 50px;
+  width: 50px;
+  color: white;
+  outline: none
 }
 
 button:disabled {

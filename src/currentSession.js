@@ -71,12 +71,14 @@ export default class CurrentSession extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="currentSession">
         <div>{this.state.isSession === true ? "Session" : "Break"}</div>
         <div>{this.props.min}:{this.state.sec === 0 ? "00" : this.state.sec < 10 ? "0" + this.state.sec : this.state.sec}</div>
-        <button id="start" onClick={this.start} disabled={this.props.isPlay === true ? "disabled" : ""}>start</button>
-        <button id="stop" onClick={this.stop}>stop</button>
-        <button id="reset" onClick={this.resetTimer}>reset</button>
+        <div className="content">
+          <button id="start" onClick={this.start} disabled={this.props.isPlay === true ? "disabled" : ""}>start</button>
+          <button id="stop" onClick={this.stop}>stop</button>
+          <button id="reset" onClick={this.resetTimer}>reset</button>
+        </div>
         <audio id="audio" crossOrigin="anonymous" preload="auto" src="media/alarm.mp3"></audio>
       </div>
     )

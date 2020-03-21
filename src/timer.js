@@ -110,8 +110,10 @@ export default class Timer extends React.Component {
 
     return (
       <div className="timer">
-        <Break isPlay={this.state.isPlay} break={this.state.break} breakDecrementor={this.breakDecrementor} breakIncrementor={this.breakIncrementor}/>
-        <Session isPlay={this.state.isPlay} session={this.state.session} sessionDecrementor={this.sessionDecrementor} sessionIncrementor={this.sessionIncrementor}/>
+        <div className="chooseTime">
+          <Break isPlay={this.state.isPlay} break={this.state.break} breakDecrementor={this.breakDecrementor} breakIncrementor={this.breakIncrementor}/>
+          <Session isPlay={this.state.isPlay} session={this.state.session} sessionDecrementor={this.sessionDecrementor} sessionIncrementor={this.sessionIncrementor}/>
+        </div>
         <CurrentSession isPlay={this.state.isPlay} playStopTimer={this.playStopTimer} min={this.state.min} break={this.state.break} updateTimer={this.updateTimer} toggleInterval={this.toggleInterval} reset={this.reset} />
         <audio id="end" preload="auto" src="alarm.mp3"></audio>
       </div>
