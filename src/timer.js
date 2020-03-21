@@ -8,31 +8,34 @@ export default class Timer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      break: 5,
-      session: 25,
-      min: 25
+      break: 1,
+      session: 1,
+      min: 1,
+      isPlay: false
     }
-
-    //this.timer = this.timer.bind(this)
-    // this.pause = this.pause.bind(this)
     this.sessionDecrementor = this.sessionDecrementor.bind(this)
     this.sessionIncrementor = this.sessionIncrementor.bind(this)
     this.breakDecrementor = this.breakDecrementor.bind(this)
     this.breakIncrementor = this.breakIncrementor.bind(this)
+    this.toggleInterval = this.toggleInterval.bind(this)
+    this.playStopTimer = this.playStopTimer.bind(this)
+    this.updateTimer = this.updateTimer.bind(this)
+    this.reset = this.reset.bind(this) 
   }
 
   sessionIncrementor() {
     this.setState({
-      session: this.state.session + 5
+      session: this.state.session + 5,
+      min: this.state.session + 5
     })
   }
 
   sessionDecrementor() {
     this.setState({
-      session: this.state.session - 5
+      session: this.state.session - 5,
+      min: this.state.session - 5
     })
   }
-
 
   breakIncrementor() {
     this.setState({
@@ -46,28 +49,41 @@ export default class Timer extends React.Component {
     })
   }
 
-  /* timer() {
-    this.interval = setInterval(() => {
+  updateTimer() {
+    this.setState({
+      min: this.state.min - 1
+    })
+  }
+
+  toggleInterval(isSession) {
+    if (isSession) {
       this.setState({
-        sec: this.state.sec - 1
+        min: this.state.session
+      }) 
+    } else {
+      this.setState({
+        min: this.state.break
       })
-    }, 1000)
-
-    if(this.state.min === 0 && this.state.sec === 0) {
-      clearInterval(this.interval)
     }
-  } */
-    
- /*  pause() {
+  }
 
-  } */
- 
+  reset() {
+    this.setState({
+      min: this.state.session
+    })
+  }
+
+  playStopTimer() {
+    this.setState({
+      isPlay: !this.state.isPlay
+    })
+  }
 
   render() {
 
-    if (this.state.break < 0) {
+    if (this.state.break <= 0) {
       this.setState({
-        break: 0
+        break: 1
       })
     }
 
@@ -91,26 +107,12 @@ export default class Timer extends React.Component {
 
     return (
       <div className="timer">
-        <Break  break={this.state.break} breakDecrementor={this.breakDecrementor} breakIncrementor={this.breakIncrementor}/* timer={this.timer} *//>
-        <Session session={this.state.session} sessionDecrementor={this.sessionDecrementor} sessionIncrementor={this.sessionIncrementor}/* timer={this.timer} *//>
-        <CurrentSession min={this.state.min}/>
+        <Break isPlay={this.state.isPlay} break={this.state.break} breakDecrementor={this.breakDecrementor} breakIncrementor={this.breakIncrementor}/* timer={this.timer} *//>
+        <Session isPlay={this.state.isPlay} session={this.state.session} sessionDecrementor={this.sessionDecrementor} sessionIncrementor={this.sessionIncrementor}/* timer={this.timer} *//>
+        <CurrentSession isPlay={this.state.isPlay} playStopTimer={this.playStopTimer} min={this.state.min} break={this.state.break} updateTimer={this.updateTimer} toggleInterval={this.toggleInterval} reset={this.reset} />
         <audio id="end" preload="auto" src="alarm.mp3"></audio>
       </div>
     )
   }
-
- /*  componentDidMount() {
-    if (this.state.session === 0 && this.state.sec === 0) {
-      this.interval = setInterval(() => {
-        this.setState({
-          sec: this.state.sec - 1
-        })
-      }, 1000)
-    }
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.interval)
-  }*/
 } 
  
